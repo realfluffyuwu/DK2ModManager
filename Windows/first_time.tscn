@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://0oulcluvnstl"]
+[gd_scene load_steps=5 format=3 uid="uid://0oulcluvnstl"]
 
 [ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_u2d05"]
 [ext_resource type="Script" uid="uid://dq88d4sg6d5wc" path="res://first_time.gd" id="2_rarcd"]
+[ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="3_rarcd"]
+[ext_resource type="FontFile" uid="uid://b0sme10xxf33t" path="res://Assets/Fonts/PerfectDosVga.ttf" id="4_7e4g2"]
 
 [node name="FirstTime" type="Control"]
 layout_mode = 3
@@ -42,6 +44,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rarcd")
+theme_override_font_sizes/font_size = 22
 text = "Navigate to your Doorkickers 2 Installation Directory"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -72,12 +76,22 @@ alignment = 1
 [node name="steam" type="Button" parent="ColorRect/Panel2/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_rarcd")
 theme_override_font_sizes/font_size = 20
-text = "Open Steam Properties Window"
+text = "Open Steam Properties"
+
+[node name="steaminstallfinder" type="Button" parent="ColorRect/Panel2/BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_rarcd")
+theme_override_font_sizes/font_size = 20
+text = "Automatic Install Detection"
 
 [node name="locate" type="Button" parent="ColorRect/Panel2/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_rarcd")
 theme_override_font_sizes/font_size = 20
 text = "Locate Folder"
 
@@ -89,11 +103,143 @@ anchor_bottom = 0.771
 offset_bottom = -0.070007324
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_rarcd")
 theme_override_font_sizes/normal_font_size = 18
 text = "If you don't know where the Folder is you can open the Properties Window in Steam and it will be under the Installed Files and you can hit Browse.
 
 I can't take you all the way to the Browse but I can open the Properties window for you."
 horizontal_alignment = 1
 
+[node name="helpwindow" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -452.0
+offset_top = -229.0
+offset_right = 452.0
+offset_bottom = 229.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="close" type="Button" parent="helpwindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -44.0
+offset_right = 124.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_rarcd")
+theme_override_font_sizes/font_size = 22
+text = "Close"
+
+[node name="Label" type="RichTextLabel" parent="helpwindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.897
+offset_top = 8.0
+offset_bottom = 0.17398071
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/mono_font = ExtResource("4_7e4g2")
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/mono_font_size = 16
+bbcode_enabled = true
+text = "Why do I need to use a Batch script to find the Folder?
+
+The Simple answer is I need to access the Windows Registry so I can fetch the Steam Install Directory from it.
+Godot doesn't have any way for me to access it Natively so I need to use a third party program for it.
+
+I search specifically for this Key \"[color=green][code]HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Valve\\Steam\\InstallPath[/code][/color]\".
+This key stores the Path to the Steam Install Directory.
+For example that Registry key on my Computer outputs [color=violet][code]C:\\Program Files (x86)\\Steam[/code][/color]
+I then use this key to find the [color=purple][code]libraryfolders.vdf[/code][/color] which is inside your steamapps folder.
+
+The [color=purple][code]libraryfolders.vdf[/code][/color] has the Paths to all the Library Folders and what AppIDs are installed there
+which I then Crawl through to find the AppID for Doorkickers [color=red][code]1239080[/code][/color] and which SteamLibrary Folder you have it installed.
+This allows me to build the Paths to the Game directory and also the Workshop Folder.
+
+Of course you can void all of that and just choose the Game folder yourself but this Option is there for those who don't mind or are too lazy to do it themselves.
+
+The Batch Script should be next to the Mod Manager so you can have a look at it yourself, I stole it from Stackoverflow lmao."
+horizontal_alignment = 1
+
+[node name="helpwindow2" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -452.0
+offset_top = -229.0
+offset_right = 452.0
+offset_bottom = 229.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="close" type="Button" parent="helpwindow2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -44.0
+offset_right = 124.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_rarcd")
+theme_override_font_sizes/font_size = 22
+text = "Close"
+
+[node name="Label" type="RichTextLabel" parent="helpwindow2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.897
+offset_top = 8.0
+offset_bottom = 0.17398071
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/mono_font = ExtResource("4_7e4g2")
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/mono_font_size = 16
+bbcode_enabled = true
+text = "Why do I need to use a Batch script to find the Folder?
+
+The Simple answer is I need to access the Windows Registry so I can fetch the Steam Install Directory from it.
+Godot doesn't have any way for me to access it Natively so I need to use a third party program for it.
+
+I search specifically for this Key \"[color=green][code]HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Valve\\Steam\\InstallPath[/code][/color]\".
+This key stores the Path to the Steam Install Directory.
+For example that Registry key on my Computer outputs [color=violet][code]C:\\Program Files (x86)\\Steam[/code][/color]
+I then use this key to find the [color=purple][code]libraryfolders.vdf[/code][/color] which is inside your steamapps folder.
+
+The [color=purple][code]libraryfolders.vdf[/code][/color] has the Paths to all the Library Folders and what AppIDs are installed there
+which I then Crawl through to find the AppID for Doorkickers [color=red][code]1239080[/code][/color] and which SteamLibrary Folder you have it installed.
+This allows me to build the Paths to the Game directory and also the Workshop Folder.
+
+Of course you can void all of that and just choose the Game folder yourself but this Option is there for those who don't mind or are too lazy to do it themselves.
+
+The Batch Script should be next to the Mod Manager so you can have a look at it yourself, I stole it from Stackoverflow lmao."
+horizontal_alignment = 1
+
 [connection signal="pressed" from="ColorRect/Panel2/BoxContainer/steam" to="." method="_on_steam_pressed"]
+[connection signal="pressed" from="ColorRect/Panel2/BoxContainer/steaminstallfinder" to="." method="_on_steaminstallfinder_pressed"]
 [connection signal="pressed" from="ColorRect/Panel2/BoxContainer/locate" to="." method="_on_locate_pressed"]
+[connection signal="pressed" from="helpwindow/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="helpwindow2/close" to="." method="_on_close_pressed"]

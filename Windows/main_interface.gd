@@ -30,6 +30,7 @@ var modsCompatNumber: String = "35"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(OS.get_environment("USERNAME"))
 	ffglobals.mainWindow = self
 	application_name.text = "Door Kickers 2 Modlist Manager - Platform: {0} Version: {1}".format([ffglobals.buildplatform, ffglobals.buildversion])
 	if !ffglobals.isFirstTime:
@@ -37,6 +38,8 @@ func _ready() -> void:
 	# Hookup the Menu Buttons
 	modlist_menu.get_popup().connect("index_pressed",_modlist_buttons)
 	settings_menu.get_popup().connect("index_pressed",_settings_buttons)
+	
+
 
 func _settings_buttons(idx: int) -> void:
 	match idx:
@@ -129,6 +132,7 @@ func _load_dialog(path: String) -> void:
 
 	var file = FileAccess.open(path,FileAccess.READ)
 	var text = file.get_as_text().split("\n")
+	file.close()
 
 	if !text[0].containsn("<DK2Mods>"):
 		OS.alert("This isn't a Valid Modlist File, maybe it's corrupted or you have chosen the Wrong file", "Not Modlist File")
@@ -138,6 +142,7 @@ func _load_dialog(path: String) -> void:
 		i._set_loaded()
 	filter_mods(false)
 
+	# Filter out the Outer Element
 	for t in text:
 		if t.containsn("<DK2Mods>"):
 			text.remove_at(text.find("<DK2Mods>"))
@@ -156,20 +161,19 @@ func _load_dialog(path: String) -> void:
 		# 1 is Mod name, 3 is Mod ID
 		loadedList.append([s[1],s[3]])
 	for e in loadedList:
-		print("Searching for " + e[0])
-		# Clean up the Mods Name
-		e[0] = e[0].replace(":", "_")
-		e[0] = e[0].replace(".", "_")
-		var m = disabledmods.find_child(e[0], true, false)
-		if m == null:
-			print("Not Found " + e[0])
-			_addMissingMod(e[0], e[1])
-			continue
-		print("Found " + e[0])
-		if m.name == e[0] && m.mod_ID == e[1]:
-			print("Loaded " + m.name)
-			m._set_loaded()
-
+		print("Searching for Mod: " + e[0])
+		
+		var curMod: String = e[0]
+		var curModID: String = e[1]
+		
+		for m in disabledmods.get_children():
+			if m.mod_name == e[0] && m.mod_ID == e[1]:
+				print("Found Mod: " + e[0])
+				m._set_loaded()
+				print("Loaded Mod: " + e[0])
+				curMod = ""
+				curModID = ""
+		if curMod != "" && curModID != "":	_addMissingMod(e[0], e[1])
 
 	if missingmodsbox.get_child_count() >= 1:
 		missingModWindow.show()
@@ -191,7 +195,7 @@ func startup() -> void:
 	if FileAccess.file_exists(ffglobals.settingsFile):
 		var file = FileAccess.open(ffglobals.settingsFile, FileAccess.READ)
 		settingsSaveContent = JSON.parse_string(file.get_as_text())
-
+		file.close()
 		# Insane Double Check to see if it works
 		if settingsSaveContent.get_or_add("GameInstallPath") != null:
 			ffglobals.installDirectory = settingsSaveContent["GameInstallPath"]
@@ -336,6 +340,7 @@ func checkLoadedMods() -> void:
 	# Parse the XML
 
 	var split = file.get_as_text().split("\n")
+	file.close()
 	var modsline = ""
 	for s in split:
 		if s.containsn("<mods compat="): modsline = s
@@ -432,18 +437,20 @@ func _on_apply_pressed(modded: bool = true) -> void:
 	modsString = "<Mods compat=\"{0}\"".format([modsCompatNumber])
 	for m in enabledmods.get_children():
 		var localpath = m.mod_path
-		if m.mod_path.containsn("common/DoorKickers2/mods"):
+		#print(localpath)
+		if m.mod_path.replace("\\","/").containsn("common/DoorKickers2/mods"):
 			var temp = m.mod_path.split("/")
 			localpath = "mods/{0}".format([temp[-1]])
-		elif m.mod_path.containsn("common/DoorKickers2/mods_upload"):
+		elif m.mod_path.replace("\\","/").containsn("common/DoorKickers2/mods_upload"):
 			var temp = m.mod_path.split("/")
 			localpath = "mods_upload/{0}".format([temp[-1]])
 		if ffglobals.buildplatform == "Linux":
-			modsString = "{0} path{1}=\"{2}\"".format([modsString, str(count), localpath.replace("/","\\")])
+			modsString = "{0} path{1}=\"{2}\"".format([modsString, str(count), localpath.replace("\\","/")])
 		else:
 			if !m.isLocalMod:
 				localpath = localpath.replace("/","\\")
 			modsString = "{0} path{1}=\"{2}\"".format([modsString, str(count), localpath])
+		print(localpath)
 		count += 1
 
 	modsString = "{0}/>".format([modsString])
@@ -451,6 +458,7 @@ func _on_apply_pressed(modded: bool = true) -> void:
 	var optionsXML: String = ""
 	var appliedMods: bool = false
 	var split = file.get_as_text().split("\n")
+	file.close()
 	for s in split:
 		if s.containsn("<mods compat=") && !appliedMods && hasMods:
 					# Mod Compat Version Thing

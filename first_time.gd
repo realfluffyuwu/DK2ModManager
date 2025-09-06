@@ -2,11 +2,14 @@ extends Control
 
 var recalled = false
 
+@onready var steaminstallfinder: Button = $ColorRect/Panel2/BoxContainer/steaminstallfinder
 
 func _ready() -> void:
 	ffglobals.firstTimeWindow = self
 	if !ffglobals.isFirstTime:
 		visible = false
+	if ffglobals.buildplatform == "Linux":
+		steaminstallfinder.hide()
 
 func completeFirstTime() -> void:
 	visible = false
@@ -100,3 +103,49 @@ func _findWorkshopFolder() -> void:
 	else:
 		OS.alert("Are you sure this is the Door Kickers 2 Installation Directory?\n\nThe Workshop Folder can't be found either you have Selected the Wrong folder or Your game is Pirated\n\nIf this is incorrect Contact Fluffy and Listen to their Instructions","Workshop Not Found")
 		return
+
+func _on_steaminstallfinder_pressed() -> void:
+	_find_game_path()
+
+func _find_game_path() -> void:
+	#var fileaccess: Dictionary = OS.execute_with_pipe("cmd.exe" ,["/c", ffglobals.steamInstallHelper], true)
+	#var output: FileAccess = fileaccess["stdio"]
+	#var steampath = output.get_line()
+	var steampath: String = ""
+	if ffglobals.buildplatform == "Windows":
+		var getInstallDir = load("uid://ck05bvw4s58ui")
+		var cs = getInstallDir.new()
+		steampath = cs.GetSteamDir()
+	# I'm done with the FileAccess so I close it here
+	#output.close()
+	#fileaccess["stderr"].close()
+	
+	steampath = "\\".join([steampath,"steamapps"])
+	if FileAccess.file_exists(steampath.path_join("libraryfolders.vdf")):
+		# Open the File
+		var vdf: FileAccess = FileAccess.open(steampath.path_join("libraryfolders.vdf"),FileAccess.READ)
+		# Dump the File
+		var vdfoutput = vdf.get_as_text()
+		# Close the File since we have the Output
+		vdf.close()
+		var path = _returnDK2Path(vdfoutput)
+		if path == "":
+			print("Game Path wasn't Found")
+		path = path.split("\"", false)
+		path = path[path.size() - 1].replace("\\\\", "\\")
+		ffglobals.installDirectory = path.path_join("steamapps/common/DoorKickers2").replace("/","\\")
+		ffglobals.workshopDirectory = path.path_join("steamapps/workshop").replace("/","\\")
+		
+		completeFirstTime()
+	else:
+		OS.alert("Unable to Locate your Install Directory Automatically, Please locate it manually", "Unable to Find DoorKickers 2 Install Directory")
+
+func _returnDK2Path(vdfoutput: String) -> String:
+	var s = vdfoutput.split("\n")
+	var path: String = ""
+	for t in s:
+		if t.containsn("path"):
+			path = t
+		if t.containsn("1239080"):
+			return path
+	return ""

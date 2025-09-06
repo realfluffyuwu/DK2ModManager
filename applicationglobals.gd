@@ -2,8 +2,8 @@ extends Node
 
 
 const author := "Fluffy"
-var buildversion := "0.0.1"
-var latestversion := "0.0.1"
+var buildversion := "0.1.0"
+var latestversion := "0.1.0"
 var buildplatform := "platform"
 
 var installDirectory := ""
@@ -12,6 +12,8 @@ var workshopDirectory := ""
 var localModDirectory := ""
 
 var settingsFile := ""
+var modManagerPath := ""
+var steamInstallHelper := ""
 
 # Application Root
 @onready var root: Node = $"."
@@ -24,7 +26,12 @@ var firstTimeWindow: Control
 var isDragging = false
 var mainWindow: Control
 
+
+
 func _ready() -> void:
+	
+
+	
 	# We need to Determine which Platform the User is using
 	match OS.get_name():
 		"Windows":
@@ -44,8 +51,10 @@ func _ready() -> void:
 			OS.alert("Contact Fluffy and Listen to their Instructions\n\nThe Application can't determine what System you are running this on thus the rest of it's Functions will not work\n\nReported System Platform: \"{0}\"".format([OS.get_name()]),"Unknown System Platform")
 			get_tree().quit()
 
+	modManagerPath = OS.get_executable_path().get_base_dir()
+	steamInstallHelper = modManagerPath.path_join("grabSteamInstallDir.bat")
 	# We need to check if this is the first time the Program has been run
-	settingsFile = OS.get_executable_path().get_base_dir().path_join("DK2ModlistManagerSettings.json")
+	settingsFile = modManagerPath.path_join("DK2ModlistManagerSettings.json")
 
 	if FileAccess.file_exists(settingsFile):
 		isFirstTime = false
@@ -57,9 +66,10 @@ func _process_paths(type: int) -> void:
 			var drive = OS.get_environment("windir")
 			drive = drive.erase(3, drive.length() - 3)
 			var user = OS.get_environment("USERNAME")
-
+			
 			var path = drive + "Users\\" + user + "\\AppData\\Local/"
 			appdataDirectory = path + "KillHouseGames/DoorKickers2"
+		
 		# Linux
 		1:
 			appdataDirectory = "../../compatdata/1239080/pfx/drive_c/users/steamuser/AppData/Local/KillHouseGames/DoorKickers2"
