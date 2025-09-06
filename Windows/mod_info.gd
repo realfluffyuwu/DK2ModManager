@@ -1,0 +1,124 @@
+extends Control
+
+
+@onready var mod_image_texture: TextureRect = %TextureRect
+@onready var mod_name_label: Label = %Name
+@onready var author_name_label: Label = %Author
+@onready var source: Label = %Source
+
+@onready var loadunload: Button = $Panel/BoxContainer/BoxContainer/loadunload
+
+const MOD_IMAGE = preload("uid://cndqiyq327n41")
+
+var mod_name = ""
+var author_name = ""
+var picture_path = ""
+var isLocalMod: bool = false
+var mod_path = ""
+var mod_realPath = "" # This one only Exists for Linux
+var loaded: bool = false
+var mod_ID: String = ""
+
+var enabledParent: Control
+var disabledParent: Control
+
+var enabledIDX: int = 0
+var disabledIDX: int = 0
+
+var greyscale: bool = true
+var greyscaleShader: Material
+
+# Dragging Variables
+var dragging: bool = false
+var draggable: bool = false
+var offset: Vector2
+
+func construct(pic: Texture2D, modname: String, authorname: String, isLocal: bool, path: String = "", modID = "") -> void:
+	disabledIDX = get_index()
+	# Mod Picture
+	mod_image_texture.texture = pic
+	if mod_image_texture.texture == null:
+		mod_image_texture.texture = MOD_IMAGE
+	# Mod Name
+	mod_name = modname
+	mod_name_label.text = modname
+	name = modname
+	# Mod Author
+	author_name = authorname
+	author_name_label.text = "Author: {0}".format([authorname])
+	# Is Local
+	isLocalMod = isLocal
+	if isLocal:
+		source.text = "Local"
+		$openinsteam.visible = false
+	else:
+		source.text = "Workshop"
+
+	# Fix the Path because there is a random Newline in it
+	mod_path = path
+	if !isLocal:
+		if path.split("\n").size() > 1:
+			mod_path = path.split("\n")[0] + path.split("\n")[1]
+	mod_ID = modID
+	greyscaleShader = load("res://Assets/Shaders/greyscaleMaterial.tres")
+	mod_image_texture.material = greyscaleShader
+
+	add_to_group("mods")
+
+func _on_folder_open_pressed() -> void:
+	if ffglobals.buildplatform == "Linux":
+		OS.shell_open(mod_realPath)
+	else:
+		OS.shell_open(mod_realPath)
+
+func _on_mouse_entered() -> void:
+	draggable = true
+
+
+func _on_mouse_exited() -> void:
+	draggable = false
+
+func grey_scale(toggle: bool) -> void:
+	if toggle:
+		mod_image_texture.material = greyscaleShader
+	else:
+		mod_image_texture.material = null
+
+## Unload the Mod
+func _set_loaded() -> void:
+	_on_loadunload_pressed()
+
+func _on_loadunload_pressed() -> void:
+	if loaded:
+		if get_parent() == disabledParent: return
+		loaded = false
+		loadunload.text = "Load"
+		Engine.print_error_messages = false
+		enabledParent.remove_child(self)
+		disabledParent.add_child(self)
+		Engine.print_error_messages = true
+		if disabledParent.get_child_count() >= disabledIDX:
+			disabledParent.move_child(self, disabledIDX)
+		grey_scale(true)
+	else:
+		if get_parent() == enabledParent: return
+		loaded = true
+		loadunload.text = "Unload"
+		Engine.print_error_messages = false
+		disabledParent.remove_child(self)
+		enabledParent.add_child(self)
+		Engine.print_error_messages = true
+		grey_scale(false)
+
+func _on_moveup_pressed() -> void:
+	var parent = get_parent()
+	if parent:
+		parent.move_child(self,get_index() - 1)
+
+func _on_movedown_pressed() -> void:
+	var parent = get_parent()
+	if parent:
+		parent.move_child(self,get_index() + 1)
+
+func _on_openinsteam_pressed() -> void:
+	OS.shell_open("steam://openurl/https://steamcommunity.com/workshop/filedetails/?id={0}".format([mod_ID]))

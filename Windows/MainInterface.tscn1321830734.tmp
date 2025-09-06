@@ -1,0 +1,373 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcolebumo6sc4"]
+
+[ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_2trgx"]
+[ext_resource type="Script" uid="uid://b3hejakvhamb1" path="res://Windows/main_interface.gd" id="2_4nexr"]
+[ext_resource type="Texture2D" uid="uid://dmebb61o1hv8p" path="res://Assets/Images/FluffyDev_logo.png" id="2_ilk0r"]
+[ext_resource type="Texture2D" uid="uid://urrbute3jjrk" path="res://Assets/Images/godot_logo.png" id="3_304b1"]
+
+[node name="MainInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2trgx")
+script = ExtResource("2_4nexr")
+
+[node name="backgroundborder" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3965705, 0.000107764754, 0.39656758, 1)
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.0050000004
+anchor_right = 0.99700004
+anchor_bottom = 0.99500006
+offset_left = -0.4560001
+offset_top = -0.24000025
+offset_right = 0.45593262
+offset_bottom = 0.2399292
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BoxContainer" type="BoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.003
+anchor_right = 0.998
+anchor_bottom = 0.003
+offset_left = -0.26800013
+offset_top = 0.110000014
+offset_right = 0.26794434
+offset_bottom = 48.11
+grow_horizontal = 2
+
+[node name="MenuButton" type="MenuButton" parent="background/BoxContainer"]
+layout_mode = 2
+text = " Settings "
+flat = false
+item_count = 2
+popup/item_0/text = "Configuration"
+popup/item_0/id = 0
+popup/item_1/text = "Aaaaa2"
+popup/item_1/id = 1
+
+[node name="MenuButton2" type="MenuButton" parent="background/BoxContainer"]
+layout_mode = 2
+text = " Modlist "
+flat = false
+item_count = 2
+popup/item_0/text = "Load"
+popup/item_0/id = 0
+popup/item_1/text = "Save"
+popup/item_1/id = 1
+
+[node name="exit" type="Button" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9990001
+anchor_top = 0.002
+anchor_right = 0.9990001
+anchor_bottom = 0.002
+offset_left = -69.854126
+offset_top = -0.28400004
+offset_right = 0.14587402
+offset_bottom = 48.716
+grow_horizontal = 0
+text = "Exit"
+
+[node name="StatusBar" type="BoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.95500004
+anchor_right = 0.99700004
+anchor_bottom = 0.99500006
+offset_left = 0.56200004
+offset_top = -0.11004639
+offset_right = -2.5620117
+offset_bottom = 0.20996094
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="left" type="BoxContainer" parent="background/StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ApplicationName" type="Label" parent="background/StatusBar/left"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Door Kickers 2 Modlist Manager"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="right" type="BoxContainer" parent="background/StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="ModInfo" type="Panel" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_top = 0.095000006
+anchor_right = 0.81200004
+anchor_bottom = 0.938
+offset_left = 0.12400007
+offset_top = 0.009994507
+offset_right = 0.447937
+offset_bottom = -0.19604492
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Disabled" type="Panel" parent="background/ModInfo/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 19
+text = "Disabled Mods"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+vertical = true
+
+[node name="disabledLocal" type="CheckButton" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "Hide Local Mods"
+alignment = 1
+
+[node name="disabledWorkshop" type="CheckButton" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "Hide Workshop Mods"
+alignment = 1
+
+[node name="disabledSearch" type="LineEdit" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+placeholder_text = "Search"
+alignment = 1
+clear_button_enabled = true
+
+[node name="Panel" type="Panel" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="disabledmods" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/Panel/ScrollContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+vertical = true
+
+[node name="Enabled" type="Panel" parent="background/ModInfo/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+vertical = true
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 19
+text = "Enabled Mods"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+vertical = true
+
+[node name="enabledLocal" type="CheckButton" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "Hide Local Mods"
+alignment = 1
+
+[node name="enabledWorkshop" type="CheckButton" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "Hide Workshop Mods"
+alignment = 1
+
+[node name="enabledSearch" type="LineEdit" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+placeholder_text = "Search"
+alignment = 1
+clear_button_enabled = true
+
+[node name="Panel" type="Panel" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="enabledmods" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/Panel/ScrollContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+vertical = true
+
+[node name="Buttons" type="Panel" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.91
+anchor_top = 0.095000006
+anchor_right = 0.99500006
+anchor_bottom = 0.855
+offset_left = -97.859985
+offset_top = 0.009994507
+offset_right = -0.27001953
+offset_bottom = 0.08996582
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="background/Buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="reloadmods" type="Button" parent="background/Buttons/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Reload Mods"
+
+[node name="launch" type="Button" parent="background/Buttons/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Launch DoorKickers 2"
+
+[node name="unloadall" type="Button" parent="background/Buttons/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Unload All"
+
+[node name="fluffylogo" type="TextureRect" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.855
+anchor_top = 0.86800003
+anchor_right = 0.92600006
+anchor_bottom = 0.994
+offset_left = 0.16998291
+offset_top = -0.25604248
+offset_right = -0.19604492
+offset_bottom = -0.14801025
+texture = ExtResource("2_ilk0r")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="godotlogo" type="TextureRect" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.92600006
+anchor_top = 0.86800003
+anchor_right = 0.99700004
+anchor_bottom = 0.994
+offset_left = -0.19604492
+offset_top = -0.25604248
+offset_right = -0.5620117
+offset_bottom = -0.14801025
+texture = ExtResource("3_304b1")
+expand_mode = 2
+stretch_mode = 4
+
+[connection signal="pressed" from="background/exit" to="." method="_on_exit_pressed"]
+[connection signal="toggled" from="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer/BoxContainer/disabledLocal" to="." method="_on_disabled_local_toggled"]
+[connection signal="toggled" from="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer/BoxContainer/disabledWorkshop" to="." method="_on_disabled_workshop_toggled"]
+[connection signal="text_changed" from="background/ModInfo/BoxContainer/Disabled/BoxContainer/disabledSearch" to="." method="_on_disabled_search_text_changed"]
+[connection signal="text_submitted" from="background/ModInfo/BoxContainer/Disabled/BoxContainer/disabledSearch" to="." method="_on_disabled_search_text_submitted"]
+[connection signal="toggled" from="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer/BoxContainer/enabledLocal" to="." method="_on_enabled_local_toggled"]
+[connection signal="toggled" from="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer/BoxContainer/enabledWorkshop" to="." method="_on_enabled_workshop_toggled"]
+[connection signal="text_changed" from="background/ModInfo/BoxContainer/Enabled/BoxContainer/enabledSearch" to="." method="_on_enabled_search_text_changed"]
+[connection signal="text_submitted" from="background/ModInfo/BoxContainer/Enabled/BoxContainer/enabledSearch" to="." method="_on_enabled_search_text_submitted"]
+[connection signal="pressed" from="background/Buttons/BoxContainer/reloadmods" to="." method="_on_reloadmods_pressed"]
+[connection signal="pressed" from="background/Buttons/BoxContainer/launch" to="." method="_on_launch_pressed"]
+[connection signal="pressed" from="background/Buttons/BoxContainer/unloadall" to="." method="_on_unloadall_pressed"]

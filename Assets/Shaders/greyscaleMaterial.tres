@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xyl0n1mts1r1"]
+
+[ext_resource type="Shader" uid="uid://cc6otnmsqsfu7" path="res://Assets/Shaders/GreyScale.gdshader" id="1_i305y"]
+
+[resource]
+shader = ExtResource("1_i305y")
+shader_parameter/weighted = true

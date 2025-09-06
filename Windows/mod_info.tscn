@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvbhtvokj7f1g"]
+
+[ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_e5n0h"]
+[ext_resource type="Script" uid="uid://dbqlo8dubuis" path="res://Windows/mod_info.gd" id="2_ki2p8"]
+[ext_resource type="Texture2D" uid="uid://cndqiyq327n41" path="res://Assets/Images/mod_image.jpg" id="3_jx6ao"]
+[ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="4_33kbb"]
+
+[sub_resource type="Shader" id="Shader_jx6ao"]
+code = "shader_type canvas_item;
+
+// --- Uniforms --- //
+uniform bool weighted = true;	// Determines whether to use normal or weighted averages
+uniform bool inuse = true;
+
+void fragment() {
+		COLOR.rgb = mix(vec3((COLOR.r + COLOR.g + COLOR.b) / 3.0),  vec3(0.299 * COLOR.r + 0.587 * COLOR.g + 0.114 * COLOR.b), float(weighted));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33kbb"]
+shader = SubResource("Shader_jx6ao")
+shader_parameter/weighted = true
+shader_parameter/inuse = true
+
+[sub_resource type="SystemFont" id="SystemFont_jx6ao"]
+
+[node name="ModInfo" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 127.16)
+layout_mode = 3
+anchor_right = 0.358
+anchor_bottom = 0.18200001
+offset_right = -0.24002075
+offset_bottom = 0.0639801
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_e5n0h")
+script = ExtResource("2_ki2p8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.046000004
+anchor_right = 0.98600006
+anchor_bottom = 0.933
+offset_left = -0.18649626
+offset_top = -0.03078413
+offset_right = -0.12802124
+offset_bottom = 0.031982422
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009000001
+anchor_top = 0.037
+anchor_right = 0.99100006
+anchor_bottom = 0.96300006
+offset_left = -1.1403708
+offset_top = 0.046980858
+offset_right = -0.115997314
+offset_bottom = 0.95301056
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_33kbb")
+clip_contents = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+texture = ExtResource("3_jx6ao")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="BoxContainer2" type="BoxContainer" parent="Panel/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+vertical = true
+
+[node name="Name" type="Label" parent="Panel/BoxContainer/BoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(62, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("SystemFont_jx6ao")
+theme_override_font_sizes/font_size = 20
+text = "Mod Name"
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="Author" type="Label" parent="Panel/BoxContainer/BoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("SystemFont_jx6ao")
+theme_override_font_sizes/font_size = 13
+text = "Author"
+
+[node name="Source" type="Label" parent="Panel/BoxContainer/BoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("SystemFont_jx6ao")
+theme_override_font_sizes/font_size = 13
+text = "Local"
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel/BoxContainer"]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="moveup" type="Button" parent="Panel/BoxContainer/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Move Up"
+
+[node name="loadunload" type="Button" parent="Panel/BoxContainer/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Load"
+
+[node name="openfolder" type="Button" parent="Panel/BoxContainer/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = " Open Folder "
+
+[node name="movedown" type="Button" parent="Panel/BoxContainer/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Move Down"
+
+[node name="Drag" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_right = 0.74100006
+anchor_bottom = 1.0
+offset_right = 0.13198853
+
+[node name="openinsteam" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.892
+anchor_right = 0.028
+anchor_bottom = 0.892
+offset_left = 0.17363167
+offset_top = -34.944763
+offset_right = 34.176
+offset_bottom = 0.055229187
+tooltip_text = "Open in Steam"
+theme_override_fonts/font = ExtResource("4_33kbb")
+theme_override_font_sizes/font_size = 15
+text = "?"
+
+[connection signal="pressed" from="Panel/BoxContainer/BoxContainer/moveup" to="." method="_on_moveup_pressed"]
+[connection signal="pressed" from="Panel/BoxContainer/BoxContainer/loadunload" to="." method="_on_loadunload_pressed"]
+[connection signal="pressed" from="Panel/BoxContainer/BoxContainer/openfolder" to="." method="_on_folder_open_pressed"]
+[connection signal="pressed" from="Panel/BoxContainer/BoxContainer/movedown" to="." method="_on_movedown_pressed"]
+[connection signal="mouse_entered" from="Drag" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Drag" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="openinsteam" to="." method="_on_openinsteam_pressed"]

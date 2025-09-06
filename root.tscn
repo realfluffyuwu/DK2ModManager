@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy38x1v2epqg2"]
+
+[ext_resource type="PackedScene" uid="uid://bcolebumo6sc4" path="res://Windows/MainInterface.tscn" id="1_pq8q7"]
+[ext_resource type="PackedScene" uid="uid://0oulcluvnstl" path="res://Windows/first_time.tscn" id="2_pyidc"]
+
+[node name="Root" type="Node"]
+
+[node name="MainInterface" parent="." instance=ExtResource("1_pq8q7")]
+
+[node name="FirstTime" parent="." instance=ExtResource("2_pyidc")]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

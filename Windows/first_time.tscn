@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://0oulcluvnstl"]
+
+[ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_u2d05"]
+[ext_resource type="Script" uid="uid://dq88d4sg6d5wc" path="res://first_time.gd" id="2_rarcd"]
+
+[node name="FirstTime" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u2d05")
+script = ExtResource("2_rarcd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14400001
+anchor_top = 0.07300001
+anchor_right = 0.85600007
+anchor_bottom = 0.07300001
+offset_left = 0.11198425
+offset_top = -0.30400467
+offset_right = -0.11206055
+offset_bottom = 44.695995
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Navigate to your Doorkickers 2 Installation Directory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14400001
+anchor_top = 0.21800001
+anchor_right = 0.85600007
+anchor_bottom = 0.48000002
+offset_left = 0.11198425
+offset_top = -0.26400757
+offset_right = -0.11206055
+offset_bottom = -0.040008545
+grow_horizontal = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="ColorRect/Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="steam" type="Button" parent="ColorRect/Panel2/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Open Steam Properties Window"
+
+[node name="locate" type="Button" parent="ColorRect/Panel2/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Locate Folder"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.771
+offset_bottom = -0.070007324
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 18
+text = "If you don't know where the Folder is you can open the Properties Window in Steam and it will be under the Installed Files and you can hit Browse.
+
+I can't take you all the way to the Browse but I can open the Properties window for you."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ColorRect/Panel2/BoxContainer/steam" to="." method="_on_steam_pressed"]
+[connection signal="pressed" from="ColorRect/Panel2/BoxContainer/locate" to="." method="_on_locate_pressed"]
