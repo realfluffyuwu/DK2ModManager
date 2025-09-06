@@ -22,6 +22,7 @@ shader_parameter/weighted = true
 shader_parameter/inuse = true
 
 [sub_resource type="SystemFont" id="SystemFont_jx6ao"]
+subpixel_positioning = 0
 
 [node name="ModInfo" type="Control"]
 clip_contents = true
