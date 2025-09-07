@@ -2,7 +2,7 @@ extends Node
 
 
 const author := "Fluffy"
-var buildversion := "0.1.3"
+var buildversion := "0.1.2"
 var latestversion := ""
 var buildplatform := "platform"
 var outofdate := false
