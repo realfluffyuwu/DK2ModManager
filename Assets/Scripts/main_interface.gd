@@ -5,9 +5,12 @@ extends Control
 @onready var application_name: Label = $background/StatusBar/left/ApplicationName
 @onready var background: ColorRect = $background
 
-@onready var settings_menu: MenuButton = $background/BoxContainer/settingsMenu
-@onready var modlist_menu: MenuButton = $background/BoxContainer/modlistMenu
+@onready var settings_menu: MenuButton = $background/menubuttons/settingsMenu
+@onready var modlist_menu: MenuButton = $background/menubuttons/modlistMenu
 @onready var missingModWindow: Control = $filedialog/missingmods
+
+# Newest Mod Manager Version Download
+@onready var newversion: Button = $background/rightsidebuttons/newversion
 
 # Missing Mods instantiate into this
 @onready var missingmodsbox: BoxContainer = $filedialog/missingmods/missingmodspanel/MarginContainer/BoxContainer2/ScrollContainer/missingmodsbox
@@ -39,6 +42,11 @@ func _ready() -> void:
 	modlist_menu.get_popup().connect("index_pressed",_modlist_buttons)
 	settings_menu.get_popup().connect("index_pressed",_settings_buttons)
 
+	# Show button if the Mod Manager is out of Date
+	ffglobals.newversionbutton = newversion
+	await get_tree().create_timer(2.5).timeout
+	if ffglobals.outofdate:
+		newversion.show()
 
 
 func _settings_buttons(idx: int) -> void:
@@ -591,3 +599,10 @@ func _on_disabled_search_text_changed(new_text: String) -> void:
 
 func _on_openmodsupload_pressed() -> void:
 	OS.shell_open("{0}/mods_upload".format([ffglobals.installDirectory]))
+
+
+func _on_newversion_pressed() -> void:
+	if ffglobals.buildplatform == "Windows":
+		OS.shell_open("https://github.com/realfluffyuwu/DK2ModManager/releases/tag/{0}/DK2ModManager_Windows.7z".format([ffglobals.latestversion]))
+	if ffglobals.buildplatform == "Linux":
+		OS.shell_open("https://github.com/realfluffyuwu/DK2ModManager/releases/tag/{0}/DK2ModManager_Linux.7z".format([ffglobals.latestversion]))

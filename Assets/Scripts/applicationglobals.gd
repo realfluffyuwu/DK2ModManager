@@ -3,8 +3,10 @@ extends Node
 
 const author := "Fluffy"
 var buildversion := "0.1.1"
-var latestversion := "0.1.1"
+var latestversion := ""
 var buildplatform := "platform"
+var outofdate := false
+var newversionbutton
 
 var installDirectory := ""
 var appdataDirectory := ""

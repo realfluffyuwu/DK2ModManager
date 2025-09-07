@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://b16koxg7l8p3u"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://b16koxg7l8p3u"]
 
 [ext_resource type="FontFile" uid="uid://8xejryx7vlw" path="res://Assets/Fonts/ProFontIIxNerdFont-Regular.ttf" id="1_5lvsy"]
 [ext_resource type="FontFile" uid="uid://5bkbp8jntm1o" path="res://Assets/Fonts/PerfectDosVgaTomini.ttf" id="1_jf340"]
+[ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="3_y6uoh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e808n"]
 bg_color = Color(0, 0, 0, 1)
@@ -131,17 +132,21 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1g48"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xkjg"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.78431374)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+border_color = Color(0.76649535, 0.00045319914, 0.7664901, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6uoh"]
 
 [resource]
 default_font_size = 30
@@ -179,5 +184,7 @@ TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_d474m")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_l7hcw")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_hjhew")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_10nd8")
-TooltipLabel/font_sizes/font_size = 15
-TooltipPanel/styles/panel = SubResource("StyleBoxFlat_s1g48")
+TooltipLabel/font_sizes/font_size = 18
+TooltipLabel/fonts/font = ExtResource("3_y6uoh")
+TooltipLabel/styles/normal = SubResource("StyleBoxFlat_3xkjg")
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_y6uoh")
