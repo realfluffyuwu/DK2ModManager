@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvbhtvokj7f1g"]
+[gd_scene load_steps=7 format=3 uid="uid://bvbhtvokj7f1g"]
 
 [ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_e5n0h"]
 [ext_resource type="Script" uid="uid://dbqlo8dubuis" path="res://Assets/Scripts/mod_info.gd" id="2_ki2p8"]
-[ext_resource type="Texture2D" uid="uid://cndqiyq327n41" path="res://Assets/Images/mod_image.jpg" id="3_jx6ao"]
 [ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="4_33kbb"]
 
 [sub_resource type="Shader" id="Shader_jx6ao"]
@@ -29,9 +28,9 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 127.16)
 layout_mode = 3
 anchor_right = 0.358
-anchor_bottom = 0.18200001
+anchor_bottom = 0.208
 offset_right = -0.24002075
-offset_bottom = 0.0639801
+offset_bottom = 0.23999023
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -40,48 +39,43 @@ theme = ExtResource("1_e5n0h")
 script = ExtResource("2_ki2p8")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.016
-anchor_top = 0.046000004
-anchor_right = 0.98600006
-anchor_bottom = 0.933
-offset_left = -0.18649626
-offset_top = -0.03078413
-offset_right = -0.12802124
-offset_bottom = 0.031982422
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BoxContainer" type="BoxContainer" parent="Panel"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.009000001
-anchor_top = 0.037
+anchor_left = 0.017
+anchor_top = 0.020000001
+anchor_right = 0.98300004
+anchor_bottom = 0.98
+offset_left = 0.21399975
+offset_right = -0.21401978
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.042000003
 anchor_right = 0.99100006
-anchor_bottom = 0.96300006
-offset_left = -1.1403708
-offset_top = 0.046980858
+anchor_bottom = 0.95800006
+offset_top = -0.04798889
 offset_right = -0.115997314
-offset_bottom = 0.95301056
+offset_bottom = 0.04798889
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_33kbb")
-clip_contents = true
-custom_minimum_size = Vector2(190, 0)
+custom_minimum_size = Vector2(207, 0)
 layout_mode = 2
-texture = ExtResource("3_jx6ao")
+size_flags_horizontal = 3
 expand_mode = 2
 stretch_mode = 5
 
 [node name="BoxContainer2" type="BoxContainer" parent="Panel/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 vertical = true
 
 [node name="Name" type="Label" parent="Panel/BoxContainer/BoxContainer2"]
@@ -115,49 +109,53 @@ text = "Local"
 clip_text = true
 
 [node name="BoxContainer" type="BoxContainer" parent="Panel/BoxContainer"]
-custom_minimum_size = Vector2(141.278, 0)
 layout_mode = 2
 alignment = 1
 vertical = true
 
 [node name="moveup" type="Button" parent="Panel/BoxContainer/BoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+size_flags_vertical = 3
+tooltip_text = "Move Up in the Load order"
+theme_override_fonts/font = ExtResource("4_33kbb")
+theme_override_font_sizes/font_size = 10
 text = "Move Up"
 
 [node name="loadunload" type="Button" parent="Panel/BoxContainer/BoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "Load"
+size_flags_vertical = 3
+tooltip_text = "Enable the Mod"
+theme_override_fonts/font = ExtResource("4_33kbb")
+theme_override_font_sizes/font_size = 10
+text = "Enable"
 
 [node name="openfolder" type="Button" parent="Panel/BoxContainer/BoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+size_flags_vertical = 3
+tooltip_text = "Open in your File Explorer"
+theme_override_fonts/font = ExtResource("4_33kbb")
+theme_override_font_sizes/font_size = 10
 text = " Open Folder "
 
 [node name="movedown" type="Button" parent="Panel/BoxContainer/BoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+size_flags_vertical = 3
+tooltip_text = "Move Down in the Load order"
+theme_override_fonts/font = ExtResource("4_33kbb")
+theme_override_font_sizes/font_size = 10
 text = "Move Down"
-
-[node name="Drag" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchor_right = 0.74100006
-anchor_bottom = 1.0
-offset_right = 0.13198853
 
 [node name="openinsteam" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.024
-anchor_top = 0.90000004
-anchor_right = 0.024
-anchor_bottom = 0.90000004
-offset_left = 0.008000374
-offset_top = -26.993599
-offset_right = 27.008
-offset_bottom = 0.006401062
+anchor_left = 0.028
+anchor_top = 0.947
+anchor_right = 0.028
+anchor_bottom = 0.947
+offset_left = 0.17599964
+offset_top = -31.050003
+offset_right = 27.175999
+offset_bottom = -0.05000305
 tooltip_text = "Open in Steam"
 theme_override_fonts/font = ExtResource("4_33kbb")
 theme_override_font_sizes/font_size = 16
@@ -167,6 +165,4 @@ text = "?"
 [connection signal="pressed" from="Panel/BoxContainer/BoxContainer/loadunload" to="." method="_on_loadunload_pressed"]
 [connection signal="pressed" from="Panel/BoxContainer/BoxContainer/openfolder" to="." method="_on_folder_open_pressed"]
 [connection signal="pressed" from="Panel/BoxContainer/BoxContainer/movedown" to="." method="_on_movedown_pressed"]
-[connection signal="mouse_entered" from="Drag" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Drag" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="openinsteam" to="." method="_on_openinsteam_pressed"]

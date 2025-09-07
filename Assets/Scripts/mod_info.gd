@@ -11,6 +11,8 @@ extends Control
 # Move up and Down Buttons
 @onready var moveup: Button = $Panel/BoxContainer/BoxContainer/moveup
 @onready var movedown: Button = $Panel/BoxContainer/BoxContainer/movedown
+@onready var buttonscontainer: BoxContainer = $Panel/BoxContainer/BoxContainer
+
 
 
 const MOD_IMAGE = preload("uid://cndqiyq327n41")
@@ -77,12 +79,16 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shift"):
 		quicksort = true
 		moveup.text = "Move to Top"
+		moveup.tooltip_text = "Move to the Top of the Load Order (Loads First)"
 		movedown.text = "Move to Bottom"
+		movedown.tooltip_text = "Move to the Bottom of the Load Order (Loads Last)"
 		pass
 	if event.is_action_released("shift"):
 		quicksort = false
 		moveup.text = "Move Up"
+		moveup.tooltip_text = "Move Up in the Load order"
 		movedown.text = "Move Down"
+		movedown.tooltip_text = "Move Down in the Load order"
 		pass
 
 func _on_folder_open_pressed() -> void:
@@ -90,13 +96,6 @@ func _on_folder_open_pressed() -> void:
 		OS.shell_open(mod_realPath)
 	else:
 		OS.shell_open(mod_realPath)
-
-func _on_mouse_entered() -> void:
-	draggable = true
-
-
-func _on_mouse_exited() -> void:
-	draggable = false
 
 func grey_scale(toggle: bool) -> void:
 	if toggle:
@@ -112,7 +111,8 @@ func _on_loadunload_pressed() -> void:
 	if loaded:
 		if get_parent() == disabledParent: return
 		loaded = false
-		loadunload.text = "Load"
+		loadunload.text = "Enable"
+		loadunload.tooltip_text = "Enable the Mod"
 		Engine.print_error_messages = false
 		enabledParent.remove_child(self)
 		disabledParent.add_child(self)
@@ -123,7 +123,8 @@ func _on_loadunload_pressed() -> void:
 	else:
 		if get_parent() == enabledParent: return
 		loaded = true
-		loadunload.text = "Unload"
+		loadunload.text = "Disable"
+		loadunload.tooltip_text = "Disable the Mod"
 		Engine.print_error_messages = false
 		disabledParent.remove_child(self)
 		enabledParent.add_child(self)

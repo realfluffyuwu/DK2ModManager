@@ -6,7 +6,7 @@ var buildversion := "0.1.1"
 var latestversion := ""
 var buildplatform := "platform"
 var outofdate := false
-var newversionbutton
+var newversionbutton: Control
 
 var installDirectory := ""
 var appdataDirectory := ""

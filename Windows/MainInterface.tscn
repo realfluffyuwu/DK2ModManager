@@ -216,20 +216,20 @@ color = Color(0, 0, 0, 1)
 [node name="menubuttons" type="BoxContainer" parent="background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.002
-anchor_top = 0.003
-anchor_right = 0.002
-anchor_bottom = 0.003
-offset_left = -0.26800013
-offset_top = 0.109999895
-offset_right = 482.732
-offset_bottom = 48.11
+anchor_left = 0.006
+anchor_top = 0.014
+anchor_right = 0.006
+anchor_bottom = 0.014
+offset_left = -0.0233922
+offset_top = -0.3459196
+offset_right = 329.9766
+offset_bottom = 47.65408
 grow_horizontal = 2
 
 [node name="settingsMenu" type="MenuButton" parent="background/menubuttons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_bortl")
-text = " Settings "
+text = "Settings"
 flat = false
 item_count = 2
 popup/item_0/text = " Configuration"
@@ -242,7 +242,7 @@ popup/item_1/id = 1
 layout_mode = 2
 tooltip_text = "Saving and loading of Saved Modlists"
 theme_override_fonts/font = ExtResource("5_bortl")
-text = " Modlist "
+text = "Modlist"
 flat = false
 item_count = 2
 popup/item_0/text = " Save"
@@ -252,11 +252,15 @@ popup/item_1/id = 1
 
 [node name="rightsidebuttons" type="BoxContainer" parent="background"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -482.99988
-offset_bottom = 48.0
+anchors_preset = -1
+anchor_left = 0.99600005
+anchor_top = 0.014
+anchor_right = 0.99600005
+anchor_bottom = 0.014
+offset_left = -93.52307
+offset_top = -0.3459196
+offset_right = -0.5230713
+offset_bottom = 47.65408
 grow_horizontal = 0
 alignment = 2
 
@@ -266,26 +270,36 @@ layout_mode = 2
 tooltip_text = "Download New Version from Github.
 You will need to install it manually."
 theme_override_fonts/font = ExtResource("6_1kulp")
-theme_override_font_sizes/font_size = 23
-text = " New Version Available "
+theme_override_font_sizes/font_size = 16
+text = "New Version Available
+Download?"
+
+[node name="newversionchangenotes" type="Button" parent="background/rightsidebuttons"]
+visible = false
+layout_mode = 2
+tooltip_text = "Download New Version from Github.
+You will need to install it manually."
+theme_override_fonts/font = ExtResource("6_1kulp")
+theme_override_font_sizes/font_size = 16
+text = "View New Change Log"
 
 [node name="exit" type="Button" parent="background/rightsidebuttons"]
 layout_mode = 2
 tooltip_text = "I will miss you :c"
 theme_override_fonts/font = ExtResource("5_bortl")
 theme_override_font_sizes/font_size = 30
-text = " Exit "
+text = "Exit"
 
 [node name="StatusBar" type="BoxContainer" parent="background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.003
+anchor_left = 0.006
 anchor_top = 0.95500004
-anchor_right = 0.99700004
+anchor_right = 0.99500006
 anchor_bottom = 0.99500006
-offset_left = 0.56200004
+offset_left = -0.023391724
 offset_top = -0.11004639
-offset_right = -2.5620117
+offset_right = -0.015625
 offset_bottom = 0.20996094
 grow_horizontal = 2
 grow_vertical = 0
@@ -329,7 +343,6 @@ offset_right = -5.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Disabled" type="Panel" parent="background/ModInfo/BoxContainer"]
@@ -338,12 +351,17 @@ size_flags_horizontal = 3
 
 [node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.010000001
+anchor_top = 0.008
+anchor_right = 0.99000007
+anchor_bottom = 0.99200004
+offset_left = -0.2073927
+offset_top = 0.14040041
+offset_right = -0.08743286
+offset_bottom = -0.1404419
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 8
 vertical = true
 
 [node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer"]
@@ -352,7 +370,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 25
 text = "Disabled Mods"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -411,12 +429,17 @@ size_flags_horizontal = 3
 
 [node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.010000001
+anchor_top = 0.008
+anchor_right = 0.99000007
+anchor_bottom = 0.99200004
+offset_left = 0.12739944
+offset_top = 0.14040041
+offset_right = -0.1274414
+offset_bottom = -0.1404419
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 8
 vertical = true
 
 [node name="BoxContainer" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer"]
@@ -425,7 +448,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 25
 text = "Enabled Mods"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -714,6 +737,7 @@ stretch_mode = 4
 
 [connection signal="pressed" from="filedialog/missingmods/missingmodspanel/MarginContainer/BoxContainer2/BoxContainer/close" to="." method="_on_close_missingmods_pressed"]
 [connection signal="pressed" from="background/rightsidebuttons/newversion" to="." method="_on_newversion_pressed"]
+[connection signal="pressed" from="background/rightsidebuttons/newversionchangenotes" to="." method="_on_newversionchangenotes_pressed"]
 [connection signal="pressed" from="background/rightsidebuttons/exit" to="." method="_on_exit_pressed"]
 [connection signal="toggled" from="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer/BoxContainer/disabledLocal" to="." method="_on_disabled_local_toggled"]
 [connection signal="toggled" from="background/ModInfo/BoxContainer/Disabled/BoxContainer/BoxContainer/BoxContainer/disabledWorkshop" to="." method="_on_disabled_workshop_toggled"]

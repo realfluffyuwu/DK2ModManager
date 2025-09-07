@@ -11,6 +11,8 @@ extends Control
 
 # Newest Mod Manager Version Download
 @onready var newversion: Button = $background/rightsidebuttons/newversion
+@onready var newversionchangenotes: Button = $background/rightsidebuttons/newversionchangenotes
+
 
 # Missing Mods instantiate into this
 @onready var missingmodsbox: BoxContainer = $filedialog/missingmods/missingmodspanel/MarginContainer/BoxContainer2/ScrollContainer/missingmodsbox
@@ -47,6 +49,7 @@ func _ready() -> void:
 	await get_tree().create_timer(2.5).timeout
 	if ffglobals.outofdate:
 		newversion.show()
+		newversionchangenotes.show()
 
 
 func _settings_buttons(idx: int) -> void:
@@ -606,3 +609,6 @@ func _on_newversion_pressed() -> void:
 		OS.shell_open("https://github.com/realfluffyuwu/DK2ModManager/releases/tag/{0}/DK2ModManager_Windows.7z".format([ffglobals.latestversion]))
 	if ffglobals.buildplatform == "Linux":
 		OS.shell_open("https://github.com/realfluffyuwu/DK2ModManager/releases/tag/{0}/DK2ModManager_Linux.7z".format([ffglobals.latestversion]))
+
+func _on_newversionchangenotes_pressed() -> void:
+	OS.shell_open("https://github.com/realfluffyuwu/DK2ModManager/releases/tag/{0}".format([ffglobals.latestversion]))
