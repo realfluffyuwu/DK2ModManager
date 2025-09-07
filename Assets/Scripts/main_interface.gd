@@ -41,8 +41,8 @@ func _ready() -> void:
 	if !ffglobals.isFirstTime:
 		startup()
 	# Hookup the Menu Buttons
-	modlist_menu.get_popup().connect("index_pressed",_modlist_buttons)
-	settings_menu.get_popup().connect("index_pressed",_settings_buttons)
+	modlist_menu.get_popup().connect("index_pressed", _modlist_buttons)
+	settings_menu.get_popup().connect("index_pressed", _settings_buttons)
 
 	# Show button if the Mod Manager is out of Date
 	ffglobals.newversionbutton = newversion
@@ -447,12 +447,12 @@ func _on_apply_pressed(modded: bool = true) -> void:
 	for m in enabledmods.get_children():
 		var localpath = m.mod_path
 		#print(localpath)
-		if m.mod_path.replace("\\","/").containsn("common/DoorKickers2/mods"):
-			var temp = m.mod_path.split("/")
-			localpath = "mods/{0}".format([temp[-1]])
-		elif m.mod_path.replace("\\","/").containsn("common/DoorKickers2/mods_upload"):
+		if m.mod_path.replace("\\","/").containsn("common/DoorKickers2/mods_upload"):
 			var temp = m.mod_path.split("/")
 			localpath = "mods_upload/{0}".format([temp[-1]])
+		elif m.mod_path.replace("\\","/").containsn("common/DoorKickers2/mods"):
+			var temp = m.mod_path.split("/")
+			localpath = "mods/{0}".format([temp[-1]])
 		if ffglobals.buildplatform == "Linux":
 			modsString = "{0} path{1}=\"{2}\"".format([modsString, str(count), localpath.replace("/","\\")])
 		else:
