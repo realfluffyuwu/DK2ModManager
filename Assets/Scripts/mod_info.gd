@@ -59,6 +59,7 @@ func construct(pic: Texture2D, modname: String, authorname: String, isLocal: boo
 	isLocalMod = isLocal
 	if isLocal:
 		mod_name_label.text = path.split("/", false)[-1]
+		name = path.split("/", false)[-1]
 		source.text = "Local"
 		$openinsteam.visible = false
 	else:
@@ -82,14 +83,12 @@ func _input(event: InputEvent) -> void:
 		moveup.tooltip_text = "Move to the Top of the Load Order (Loads First)"
 		movedown.text = "Move to Bottom"
 		movedown.tooltip_text = "Move to the Bottom of the Load Order (Loads Last)"
-		pass
 	if event.is_action_released("shift"):
 		quicksort = false
 		moveup.text = "Move Up"
 		moveup.tooltip_text = "Move Up in the Load order"
 		movedown.text = "Move Down"
 		movedown.tooltip_text = "Move Down in the Load order"
-		pass
 
 func _on_folder_open_pressed() -> void:
 	if ffglobals.buildplatform == "Linux":

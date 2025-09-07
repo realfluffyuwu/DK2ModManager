@@ -417,9 +417,10 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 4
 
 [node name="disabledmods" type="BoxContainer" parent="background/ModInfo/BoxContainer/Disabled/BoxContainer/Panel/ScrollContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(442, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 theme_override_constants/separation = 0
 vertical = true
 
@@ -495,9 +496,10 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 4
 
 [node name="enabledmods" type="BoxContainer" parent="background/ModInfo/BoxContainer/Enabled/BoxContainer/Panel/ScrollContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(442, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 theme_override_constants/separation = 0
 vertical = true
 
