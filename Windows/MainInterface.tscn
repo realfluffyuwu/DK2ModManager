@@ -487,6 +487,14 @@ theme_override_font_sizes/font_size = 19
 text = "Open Appdata
 Folder"
 
+[node name="openmodsupload" type="Button" parent="background/Buttons/BoxContainer/BoxContainer"]
+layout_mode = 2
+tooltip_text = "Will empty the Enabled List."
+theme_override_fonts/font = ExtResource("6_5w706")
+theme_override_font_sizes/font_size = 19
+text = "Open Mods Upload
+Folder"
+
 [node name="HSeparator" type="HSeparator" parent="background/Buttons/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -671,6 +679,7 @@ stretch_mode = 4
 [connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer/reloadmods" to="." method="_on_reloadmods_pressed"]
 [connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer/unloadall" to="." method="_on_unloadall_pressed"]
 [connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer/openappdata" to="." method="_on_openappdata_pressed"]
+[connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer/openmodsupload" to="." method="_on_openmodsupload_pressed"]
 [connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer2/apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer2/nomodlaunch" to="." method="_on_nomodlaunch_pressed"]
 [connection signal="pressed" from="background/Buttons/BoxContainer/BoxContainer2/launch" to="." method="_on_launch_pressed"]

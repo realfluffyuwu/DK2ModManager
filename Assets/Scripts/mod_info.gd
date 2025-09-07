@@ -8,6 +8,11 @@ extends Control
 
 @onready var loadunload: Button = $Panel/BoxContainer/BoxContainer/loadunload
 
+# Move up and Down Buttons
+@onready var moveup: Button = $Panel/BoxContainer/BoxContainer/moveup
+@onready var movedown: Button = $Panel/BoxContainer/BoxContainer/movedown
+
+
 const MOD_IMAGE = preload("uid://cndqiyq327n41")
 
 var mod_name = ""
@@ -27,6 +32,8 @@ var disabledIDX: int = 0
 
 var greyscale: bool = true
 var greyscaleShader: Material
+
+var quicksort: bool = false
 
 # Dragging Variables
 var dragging: bool = false
@@ -49,6 +56,7 @@ func construct(pic: Texture2D, modname: String, authorname: String, isLocal: boo
 	# Is Local
 	isLocalMod = isLocal
 	if isLocal:
+		mod_name_label.text = path.split("/", false)[-1]
 		source.text = "Local"
 		$openinsteam.visible = false
 	else:
@@ -64,6 +72,18 @@ func construct(pic: Texture2D, modname: String, authorname: String, isLocal: boo
 	mod_image_texture.material = greyscaleShader
 
 	add_to_group("mods")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("shift"):
+		quicksort = true
+		moveup.text = "Move to Top"
+		movedown.text = "Move to Bottom"
+		pass
+	if event.is_action_released("shift"):
+		quicksort = false
+		moveup.text = "Move Up"
+		movedown.text = "Move Down"
+		pass
 
 func _on_folder_open_pressed() -> void:
 	if ffglobals.buildplatform == "Linux":
@@ -113,12 +133,20 @@ func _on_loadunload_pressed() -> void:
 func _on_moveup_pressed() -> void:
 	var parent = get_parent()
 	if parent:
-		parent.move_child(self,get_index() - 1)
+		if get_index() == 0:
+			return
+		if quicksort:
+			parent.move_child(self, 0)
+		else:
+			parent.move_child(self, get_index() - 1)
 
 func _on_movedown_pressed() -> void:
 	var parent = get_parent()
 	if parent:
-		parent.move_child(self,get_index() + 1)
+		if quicksort:
+			parent.move_child(self, parent.get_child_count() - 1)
+		else:
+			parent.move_child(self, get_index() + 1)
 
 func _on_openinsteam_pressed() -> void:
 	OS.shell_open("steam://openurl/https://steamcommunity.com/workshop/filedetails/?id={0}".format([mod_ID]))

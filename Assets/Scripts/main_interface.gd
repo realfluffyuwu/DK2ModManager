@@ -362,7 +362,6 @@ func checkLoadedMods() -> void:
 			modPath = modPath.split("/")[-1]
 
 			# Find the Mod
-
 			for m in disabledmods.get_children():
 				var path = m.mod_path
 				var id = m.mod_ID
@@ -372,7 +371,6 @@ func checkLoadedMods() -> void:
 
 				# Local Mods
 				if m.isLocalMod:
-					#print("Checking if {0} Contains {1}".format([modRealPath, path]))
 					if modRealPath.containsn(path):
 						#print("It does")
 						m._set_loaded()
@@ -445,7 +443,7 @@ func _on_apply_pressed(modded: bool = true) -> void:
 			var temp = m.mod_path.split("/")
 			localpath = "mods_upload/{0}".format([temp[-1]])
 		if ffglobals.buildplatform == "Linux":
-			modsString = "{0} path{1}=\"{2}\"".format([modsString, str(count), localpath.replace("\\","/")])
+			modsString = "{0} path{1}=\"{2}\"".format([modsString, str(count), localpath.replace("/","\\")])
 		else:
 			if !m.isLocalMod:
 				localpath = localpath.replace("/","\\")
@@ -589,3 +587,7 @@ func _on_disabled_search_text_changed(new_text: String) -> void:
 	disabledSearch = new_text
 	filter_mods(false)
 #endregion
+
+
+func _on_openmodsupload_pressed() -> void:
+	OS.shell_open("{0}/mods_upload".format([ffglobals.installDirectory]))

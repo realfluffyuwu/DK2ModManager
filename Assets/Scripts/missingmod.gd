@@ -18,6 +18,5 @@ func construct(m_name: String, id: String) -> void:
 	else:
 		source.text = "Source: Workshop"
 
-
 func _on_openinworkshop_pressed() -> void:
 	OS.shell_open("steam://openurl/https://steamcommunity.com/workshop/filedetails/?id={0}".format([mod_id]))

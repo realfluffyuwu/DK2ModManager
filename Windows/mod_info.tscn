@@ -103,6 +103,7 @@ size_flags_horizontal = 3
 theme_override_fonts/font = SubResource("SystemFont_jx6ao")
 theme_override_font_sizes/font_size = 13
 text = "Author"
+clip_text = true
 
 [node name="Source" type="Label" parent="Panel/BoxContainer/BoxContainer2"]
 unique_name_in_owner = true
@@ -111,8 +112,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = SubResource("SystemFont_jx6ao")
 theme_override_font_sizes/font_size = 13
 text = "Local"
+clip_text = true
 
 [node name="BoxContainer" type="BoxContainer" parent="Panel/BoxContainer"]
+custom_minimum_size = Vector2(141.278, 0)
 layout_mode = 2
 alignment = 1
 vertical = true
@@ -147,17 +150,17 @@ offset_right = 0.13198853
 [node name="openinsteam" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.892
-anchor_right = 0.028
-anchor_bottom = 0.892
-offset_left = 0.17363167
-offset_top = -34.944763
-offset_right = 34.176
-offset_bottom = 0.055229187
+anchor_left = 0.024
+anchor_top = 0.90000004
+anchor_right = 0.024
+anchor_bottom = 0.90000004
+offset_left = 0.008000374
+offset_top = -26.993599
+offset_right = 27.008
+offset_bottom = 0.006401062
 tooltip_text = "Open in Steam"
 theme_override_fonts/font = ExtResource("4_33kbb")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "?"
 
 [connection signal="pressed" from="Panel/BoxContainer/BoxContainer/moveup" to="." method="_on_moveup_pressed"]
