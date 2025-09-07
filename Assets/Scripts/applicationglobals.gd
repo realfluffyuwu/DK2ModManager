@@ -26,12 +26,8 @@ var firstTimeWindow: Control
 var isDragging = false
 var mainWindow: Control
 
-
-
 func _ready() -> void:
-	
 
-	
 	# We need to Determine which Platform the User is using
 	match OS.get_name():
 		"Windows":
@@ -66,10 +62,10 @@ func _process_paths(type: int) -> void:
 			var drive = OS.get_environment("windir")
 			drive = drive.erase(3, drive.length() - 3)
 			var user = OS.get_environment("USERNAME")
-			
+
 			var path = drive + "Users\\" + user + "\\AppData\\Local/"
 			appdataDirectory = path + "KillHouseGames/DoorKickers2"
-		
+
 		# Linux
 		1:
 			appdataDirectory = "../../compatdata/1239080/pfx/drive_c/users/steamuser/AppData/Local/KillHouseGames/DoorKickers2"

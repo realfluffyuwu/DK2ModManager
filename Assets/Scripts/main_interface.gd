@@ -12,8 +12,8 @@ extends Control
 # Missing Mods instantiate into this
 @onready var missingmodsbox: BoxContainer = $filedialog/missingmods/missingmodspanel/MarginContainer/BoxContainer2/ScrollContainer/missingmodsbox
 
-var mod_info_scene: PackedScene = preload("res://Windows/mod_info.tscn")
-var firstTimeWindow: PackedScene = preload("res://Windows/first_time.tscn")
+var mod_info_scene: PackedScene = preload("uid://bvbhtvokj7f1g")
+var firstTimeWindow: PackedScene = preload("uid://0oulcluvnstl")
 var missing_mod_scene: PackedScene = preload("uid://tyf1wspsp4hj")
 
 var disabledHideLocalMods: bool = false
@@ -38,7 +38,7 @@ func _ready() -> void:
 	# Hookup the Menu Buttons
 	modlist_menu.get_popup().connect("index_pressed",_modlist_buttons)
 	settings_menu.get_popup().connect("index_pressed",_settings_buttons)
-	
+
 
 
 func _settings_buttons(idx: int) -> void:
@@ -162,10 +162,10 @@ func _load_dialog(path: String) -> void:
 		loadedList.append([s[1],s[3]])
 	for e in loadedList:
 		print("Searching for Mod: " + e[0])
-		
+
 		var curMod: String = e[0]
 		var curModID: String = e[1]
-		
+
 		for m in disabledmods.get_children():
 			if m.mod_name == e[0] && m.mod_ID == e[1]:
 				print("Found Mod: " + e[0])

@@ -22,7 +22,7 @@ config/icon="uid://bkve8lmqlgnot"
 
 [autoload]
 
-ffglobals="*res://applicationglobals.gd"
+ffglobals="*res://Assets/Scripts/applicationglobals.gd"
 
 [display]
 

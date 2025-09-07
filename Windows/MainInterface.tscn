@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://bcolebumo6sc4"]
 
 [ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_2trgx"]
-[ext_resource type="Script" uid="uid://b3hejakvhamb1" path="res://Windows/main_interface.gd" id="2_4nexr"]
+[ext_resource type="Script" uid="uid://b3hejakvhamb1" path="res://Assets/Scripts/main_interface.gd" id="2_4nexr"]
 [ext_resource type="Texture2D" uid="uid://dmebb61o1hv8p" path="res://Assets/Images/FluffyDev_logo.png" id="2_ilk0r"]
 [ext_resource type="Theme" uid="uid://3vmvkpfapxqp" path="res://Assets/Themes/filedialog_theme.tres" id="3_4wk1m"]
 [ext_resource type="AudioStream" uid="uid://0qccoyxyr0oe" path="res://Assets/Audio/awwman.ogg" id="3_23lk6"]
 [ext_resource type="Texture2D" uid="uid://urrbute3jjrk" path="res://Assets/Images/godot_logo.png" id="3_304b1"]
-[ext_resource type="Script" uid="uid://crsedvt2ysxei" path="res://Windows/fluffylogo.gd" id="4_4nexr"]
+[ext_resource type="Script" uid="uid://crsedvt2ysxei" path="res://Assets/Scripts/fluffylogo.gd" id="4_4nexr"]
 [ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="5_bortl"]
 [ext_resource type="FontFile" uid="uid://b0sme10xxf33t" path="res://Assets/Fonts/PerfectDosVga.ttf" id="6_5w706"]
 
@@ -78,6 +78,7 @@ layout_toggle_enabled = false
 visible = false
 top_level = true
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -554,6 +555,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4nexr")
 visible = false
 top_level = true
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

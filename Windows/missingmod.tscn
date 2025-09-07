@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://tyf1wspsp4hj"]
 
-[ext_resource type="Script" uid="uid://cd87fdh6ugkw5" path="res://Windows/missingmod.gd" id="1_4gfjg"]
+[ext_resource type="Script" uid="uid://cd87fdh6ugkw5" path="res://Assets/Scripts/missingmod.gd" id="1_4gfjg"]
 [ext_resource type="FontFile" uid="uid://8xejryx7vlw" path="res://Assets/Fonts/ProFontIIxNerdFont-Regular.ttf" id="1_fexx1"]
 [ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_k3psh"]
 
@@ -13,7 +13,6 @@ vertical = true
 
 [node name="missingmod" type="Panel"]
 custom_minimum_size = Vector2(0, 30)
-anchors_preset = -1
 offset_right = 401.0
 offset_bottom = 30.0
 size_flags_horizontal = 3

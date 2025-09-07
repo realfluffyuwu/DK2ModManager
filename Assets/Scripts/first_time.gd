@@ -119,7 +119,7 @@ func _find_game_path() -> void:
 	# I'm done with the FileAccess so I close it here
 	#output.close()
 	#fileaccess["stderr"].close()
-	
+
 	steampath = "\\".join([steampath,"steamapps"])
 	if FileAccess.file_exists(steampath.path_join("libraryfolders.vdf")):
 		# Open the File
@@ -135,7 +135,7 @@ func _find_game_path() -> void:
 		path = path[path.size() - 1].replace("\\\\", "\\")
 		ffglobals.installDirectory = path.path_join("steamapps/common/DoorKickers2").replace("/","\\")
 		ffglobals.workshopDirectory = path.path_join("steamapps/workshop").replace("/","\\")
-		
+
 		completeFirstTime()
 	else:
 		OS.alert("Unable to Locate your Install Directory Automatically, Please locate it manually", "Unable to Find DoorKickers 2 Install Directory")

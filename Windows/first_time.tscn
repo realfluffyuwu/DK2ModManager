@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0oulcluvnstl"]
 
 [ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_u2d05"]
-[ext_resource type="Script" uid="uid://dq88d4sg6d5wc" path="res://first_time.gd" id="2_rarcd"]
+[ext_resource type="Script" uid="uid://dq88d4sg6d5wc" path="res://Assets/Scripts/first_time.gd" id="2_rarcd"]
 [ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="3_rarcd"]
 
 [node name="FirstTime" type="Control"]

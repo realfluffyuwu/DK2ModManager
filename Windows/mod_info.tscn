@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvbhtvokj7f1g"]
 
 [ext_resource type="Theme" uid="uid://b16koxg7l8p3u" path="res://Assets/Themes/main_theme.tres" id="1_e5n0h"]
-[ext_resource type="Script" uid="uid://dbqlo8dubuis" path="res://Windows/mod_info.gd" id="2_ki2p8"]
+[ext_resource type="Script" uid="uid://dbqlo8dubuis" path="res://Assets/Scripts/mod_info.gd" id="2_ki2p8"]
 [ext_resource type="Texture2D" uid="uid://cndqiyq327n41" path="res://Assets/Images/mod_image.jpg" id="3_jx6ao"]
 [ext_resource type="FontFile" uid="uid://cw4qxdktair22" path="res://Assets/Fonts/ProFontIIxNerdFontMono-Regular.ttf" id="4_33kbb"]
 
