@@ -2,8 +2,8 @@ extends Node
 
 
 const author := "Fluffy"
-var buildversion := "0.1.0"
-var latestversion := "0.1.0"
+var buildversion := "0.1.1"
+var latestversion := "0.1.1"
 var buildplatform := "platform"
 
 var installDirectory := ""
