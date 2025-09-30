@@ -113,26 +113,25 @@ func _find_game_path() -> void:
 	#var steampath = output.get_line()
 	var steampath: String = ""
 	if ffglobals.buildplatform == "Windows":
-		var getInstallDir = load("uid://ck05bvw4s58ui")
+		var getInstallDir = load("res://Assets/Scripts/stinky/get_steam_install_dir.gd")
 		var cs = getInstallDir.new()
-		steampath = cs.GetSteamDir()
-	# I'm done with the FileAccess so I close it here
-	#output.close()
-	#fileaccess["stderr"].close()
+		steampath = cs.get_steam_dir()
+
+	if steampath == "":
+		return
 
 	steampath = "\\".join([steampath,"steamapps"])
 	if FileAccess.file_exists(steampath.path_join("libraryfolders.vdf")):
-		# Open the File
 		var vdf: FileAccess = FileAccess.open(steampath.path_join("libraryfolders.vdf"),FileAccess.READ)
-		# Dump the File
 		var vdfoutput = vdf.get_as_text()
-		# Close the File since we have the Output
 		vdf.close()
+
 		var path = _returnDK2Path(vdfoutput)
 		if path == "":
-			print("Game Path wasn't Found")
-		path = path.split("\"", false)
-		path = path[path.size() - 1].replace("\\\\", "\\")
+			OS.alert("Door Kickers 2 (App ID: 1239080) was not found in any Steam library folder.\n\nPlease make sure the game is installed and has been ran once, you have restarted Steam, or use the manual locate option.", "Game Not Found in Steam Libraries")
+			return
+
+		path = path.replace("\\\\", "\\")
 		ffglobals.installDirectory = path.path_join("steamapps/common/DoorKickers2").replace("/","\\")
 		ffglobals.workshopDirectory = path.path_join("steamapps/workshop").replace("/","\\")
 
@@ -142,10 +141,26 @@ func _find_game_path() -> void:
 
 func _returnDK2Path(vdfoutput: String) -> String:
 	var s = vdfoutput.split("\n")
-	var path: String = ""
-	for t in s:
-		if t.containsn("path"):
-			path = t
-		if t.containsn("1239080"):
-			return path
+	var current_library_path = ""
+	var in_apps = false
+
+	for line in s:
+		var trimmed = line.strip_edges()
+
+		if trimmed.begins_with("\"path\""):
+			var parts = trimmed.split("\"", false)
+			if parts.size() >= 3:
+				current_library_path = parts[2].strip_edges()
+
+		if trimmed.begins_with("\"apps\""):
+			in_apps = true
+
+		if in_apps and trimmed.begins_with("\"1239080\""):
+			return current_library_path
+
+		if trimmed == "}" and not in_apps:
+			current_library_path = ""
+		elif trimmed == "}" and in_apps:
+			in_apps = false
+
 	return ""
